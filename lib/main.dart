@@ -104,11 +104,44 @@ class InitialOverlay extends StatelessWidget {
             const SizedBox(height: 30),
             NeumorphicButton(
               onPressed: () {
+                game.setDifficulty(Difficulty.easy);
                 game.startGame();
                 game.overlays.remove('initial');
               },
               child: const Text(
-                '开始游戏',
+                '简单',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+            NeumorphicButton(
+              onPressed: () {
+                game.setDifficulty(Difficulty.medium);
+                game.startGame();
+                game.overlays.remove('initial');
+              },
+              child: const Text(
+                '一般',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+            NeumorphicButton(
+              onPressed: () {
+                game.setDifficulty(Difficulty.hard);
+                game.startGame();
+                game.overlays.remove('initial');
+              },
+              child: const Text(
+                '困难',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -157,6 +190,15 @@ class GameOverOverlay extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
+            const SizedBox(height: 10),
+            Text(
+              '难度: ${_getDifficultyLabel(game.difficulty)}',
+              style: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
             const SizedBox(height: 30),
             NeumorphicButton(
               onPressed: () {
@@ -172,10 +214,38 @@ class GameOverOverlay extends StatelessWidget {
                 ),
               ),
             ),
+            const SizedBox(height: 10),
+            NeumorphicButton(
+              onPressed: () {
+                game.overlays.remove('gameOver');
+                game.overlays.add('initial');
+              },
+              child: const Text(
+                '返回选择难度',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+            ),
           ],
         ),
       ),
     );
+  }
+
+  String _getDifficultyLabel(Difficulty difficulty) {
+    switch (difficulty) {
+      case Difficulty.easy:
+        return '简单';
+      case Difficulty.medium:
+        return '一般';
+      case Difficulty.hard:
+        return '困难';
+      default:
+        return '';
+    }
   }
 }
 

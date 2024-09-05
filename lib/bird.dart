@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 class Bird extends SpriteComponent with HasGameRef, CollisionCallbacks {
   static const double gravity = 500;
-  static const double jumpSpeed = -350;
+  static const double jumpSpeed = -250; // 减少跳跃速度
   double velocity = 0;
 
   Bird() : super(size: Vector2(50, 50));
@@ -23,8 +23,6 @@ class Bird extends SpriteComponent with HasGameRef, CollisionCallbacks {
       size: hitboxSize,
       position: hitboxOffset,
     ));
-    print(
-        'Bird loaded: position=$position, size=$size, hitboxSize=$hitboxSize');
   }
 
   @override
@@ -33,18 +31,22 @@ class Bird extends SpriteComponent with HasGameRef, CollisionCallbacks {
     velocity += gravity * dt;
     position.y += velocity * dt;
     angle = velocity * 0.0015;
+
+    // 确保小鸟不会飞出屏幕上边缘
+    if (position.y < size.y / 2) {
+      position.y = size.y / 2;
+      velocity = 0;
+    }
   }
 
   void jump() {
     velocity = jumpSpeed;
-    print('Bird jumped: velocity=$velocity');
   }
 
   void reset() {
     position = Vector2(50, gameRef.size.y / 2);
     velocity = 0;
     angle = 0;
-    print('Bird reset: position=$position');
   }
 
   // 移除 render 方法，不再绘制碰撞箱
