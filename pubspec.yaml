@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.6
+  flame: ^1.10.1  # 添加 Flame 依赖
 
 # 开发依赖
 dev_dependencies:
@@ -24,9 +25,9 @@ flutter:
   uses-material-design: true
 
   # 添加资源
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/images/bird.png
+    - assets/images/background.png
 
   # 添加自定义字体
   # fonts:
