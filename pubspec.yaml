@@ -5,20 +5,23 @@ publish_to: 'none' # 防止意外发布到 pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.4.4 <4.0.0'
+  sdk: ">=2.17.0 <3.0.0"
 
 # 项目依赖
 dependencies:
   flutter:
     sdk: flutter
-  cupertino_icons: ^1.0.6
+  get: ^4.6.1
+  cupertino_icons: ^1.0.2
   flame: ^1.10.1  # 添加 Flame 依赖
+  flutter_localizations: # 添加本地化依赖
+    sdk: flutter
 
 # 开发依赖
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.0
+  flutter_lints: ^1.0.0
 
 # Flutter 特定配置
 flutter:
